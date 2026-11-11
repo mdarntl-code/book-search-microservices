@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Результати пошуку: <%= query %></title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: #f5f6fa;
+      color: #2f3640;
+      margin: 0;
+      padding: 40px 20px;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .back-link {
+      display: inline-block;
+      margin-bottom: 20px;
+      text-decoration: none;
+      color: #0097e6;
+      font-weight: 600;
+    }
+    .back-link:hover {
+      text-decoration: underline;
+    }
+    .header-box {
+      background: #ffffff;
+      padding: 20px 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+      margin-bottom: 25px;
+    }
+    h2 {
+      margin: 0;
+      color: #192a56;
+      font-size: 22px;
+    }
+    .book-list {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 15px;
+    }
+    .card {
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      border-left: 5px solid #0097e6;
+    }
+    .card h3 {
+      margin: 0 0 10px 0;
+      color: #2f3640;
+      font-size: 18px;
+    }
+    .card-info {
+      font-size: 14px;
+      color: #57606f;
+      margin: 4px 0;
+    }
+    .badge {
+      display: inline-block;
+      background: #f1f2f6;
+      color: #2f3542;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-family: monospace;
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="/" class="back-link">← Повернутися назад</a>
+
+    <div class="header-box">
+      <h2>Результати пошуку за запитом: <em>«<%= query %>»</em></h2>
+      <p style="margin: 5px 0 0 0; color: #718093; font-size: 14px;">Знайдено результатів: <%= books.length %></p>
+    </div>
+
+    <div class="book-list">
+      <% books.forEach(function(book) { %>
+        <div class="card">
+          <h3>📖 <%= book.title %></h3>
+          <p class="card-info"><strong>Автор:</strong> <%= book.author %></p>
+          <p class="card-info"><strong>Рік видання:</strong> <%= book.year !== null ? book.year : 'Невідомо' %></p>
+          <p class="card-info"><strong>ISBN:</strong> <span class="badge"><%= book.isbn %></span></p>
+        </div>
+      <% }); %>
+    </div>
+  </div>
+</body>
+</html>
+
